@@ -39,7 +39,7 @@ app.get("/login", function (req, res) {
 });
 app.post("/logincompany", async (req, res) => {
   const companyDetails = {
-    email: req.body.cemail,
+    email: req.body.email,
     contactNo: req.body.ccontactNo,
     password: req.body.cpassword,
   };
@@ -73,7 +73,7 @@ app.post("/logincompany", async (req, res) => {
     console.log(error.response.data.errMessage);
   }
 });
-app.post("/loginfarmer", async (res, req) => {
+app.post("/loginfarmer", async (req, res) => {
   const farmerdetails = {
     email: req.body.email,
     contactNo: req.body.contactNo,
