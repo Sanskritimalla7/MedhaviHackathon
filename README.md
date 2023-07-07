@@ -1,6 +1,6 @@
 # MedhaviHackathon
 
-The repository is for the Hackathon for the team name CodeX
+The repository is for the Hackathon of team name CodeX
 
 <ul>
   <li>Aayush Joshi <strong>Team leader</strong></li>
