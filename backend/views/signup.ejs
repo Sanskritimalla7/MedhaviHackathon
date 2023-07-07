@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>SignUp</title>
+    <link rel="stylesheet" href="css/style.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="javascript/signup.js" defer></script>
+    <!-- <script src="javascript/validation.js" defer></script> -->
+  </head>
+
+  <body>
+    <%- include('header'); -%>
+
+    <div id="success" style="display: none">
+      <p>Yay you have submitted the form successfully 👍</p>
+    </div>
+    <div id="failure" style="display: none">
+      <p>Oops!! there was some error!! 😶</p>
+    </div>
+    <div class="formgroup">
+      <div class="wrapper">
+        <div class="title-text">
+          <div class="title login">Signup As</div>
+          <div class="title signup">SignUp As</div>
+        </div>
+        <div class="form-container">
+          <div class="slide-controls">
+            <input type="radio" name="slide" id="login" checked />
+            <input type="radio" name="slide" id="signup" />
+            <label for="login" class="slide login">Farmer</label>
+            <label for="signup" class="slide signup">Company</label>
+            <div class="slider-tab"></div>
+          </div>
+
+          <div class="form-inner">
+            <form action="/registerfarmer" method="POST" class="login login1">
+              <div class="field">
+                <input
+                  type="text"
+                  name="fname"
+                  label="First_Name"
+                  placeholder="First Name"
+                  required
+                  id="Fname"
+                />
+                <p class="hide" id="danger">
+                  The name cannot be blank and caanot have number
+                </p>
+              </div>
+
+              <div class="field">
+                <input
+                  name="lname"
+                  type="text"
+                  label="Last Name"
+                  placeholder="Last Name"
+                  required
+                  id="Lname"
+                />
+                <p class="hide" id="danger">
+                  The name cannot be blank and caanot have number
+                </p>
+              </div>
+
+              <div class="field">
+                <input
+                  name="dob"
+                  type="date"
+                  label="DOB"
+                  placeholder="Date of birth"
+                  id="Dob"
+                  required
+                />
+                <p class="hide" id="danger">You should be above 18</p>
+              </div>
+
+              <div class="field">
+                <input
+                  name="contactNo"
+                  type="tel"
+                  placeholder="Contact Number"
+                  id="Phone"
+                  required
+                />
+                <p class="hide" id="danger">Enter 10 digit mobile number!!</p>
+              </div>
+
+              <div class="field">
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="Email Id"
+                  id="Email"
+                />
+                <p class="hide" id="danger">Your email must be a valid email</p>
+              </div>
+
+              <div class="field">
+                <input
+                  name="aadhar"
+                  type="text"
+                  label="Aadhar"
+                  id="Aadhar"
+                  placeholder="Aadhar number"
+                  required
+                />
+                <p class="hide" id="danger">The addhar number is wrong</p>
+              </div>
+
+              <div class="field">
+                <input
+                  name="land"
+                  id="Acres"
+                  type="number"
+                  placeholder="No. of acres of land"
+                  required
+                />
+                <p class="hide" id="danger">
+                  The land cannot be negative or zero
+                </p>
+              </div>
+
+              <div class="field">
+                <input
+                  name="password"
+                  id="Password"
+                  type="password"
+                  label="Password"
+                  placeholder="Password"
+                  required
+                />
+                <p class="hide" id="danger">
+                  Password should have 1 uppercase,1 lowercase,1 number and 1
+                  symbol
+                </p>
+              </div>
+
+              <div class="field">
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  id="confirmPassword"
+                  required
+                />
+                <p class="hide" id="danger">Password doesnot match</p>
+              </div>
+
+              <div class="noofcrops">
+                <p>Select the crops which you grow</p>
+                <div class="four">
+                  <div>
+                    <input
+                      type="checkbox"
+                      class="checkbox"
+                      name="crop1"
+                      value="Rice"
+                      id="Rice"
+                    />
+                    <label for="Rice">Rice</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      class="checkbox"
+                      name="crop2"
+                      value="Wheat"
+                      id="Wheat"
+                    />
+                    <label for="Wheat">Wheat</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      class="checkbox"
+                      name="crop3"
+                      value="Barley"
+                      id="Barley"
+                    />
+                    <label for="Barley">Barley</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      class="checkbox"
+                      name="crop4"
+                      value="Oats"
+                      id="Oats"
+                    />
+                    <label for="Oats">Oats</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      class="checkbox"
+                      name="crop5"
+                      value="Pulse"
+                      id="pulse"
+                    />
+                    <label for="pulse">Pulse</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      class="checkbox"
+                      name="crop6"
+                      value="Maize"
+                      id="maize"
+                    />
+                    <label for="maize">Maize</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      class="checkbox"
+                      name="crop7"
+                      value="Sugarcane"
+                      id="sugarcane"
+                    />
+                    <label for="sugarcane">Sugarcane</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      class="checkbox"
+                      name="crop8"
+                      value=""
+                      id="other_crops"
+                    />
+                    <label for="other_crops">Others</label>
+                  </div>
+                </div>
+              </div>
+              <div class="Ack">
+                <input
+                  type="checkbox"
+                  name="Ack"
+                  class="Ack"
+                  id="Ack"
+                  required
+                />
+                <label for="Ack"
+                  >I agree to the<a href="/TANDC" target="blank">
+                    terms and condition</a
+                  >
+                </label>
+              </div>
+
+              <div class="field btn">
+                <div class="btn-layer"></div>
+                <input type="submit" value="signup_farmer" id="Farmer_SignUp" />
+              </div>
+            </form>
+
+            <form action="/registercompany" method="POST" class="signup login2">
+              <div class="field">
+                <input
+                  type="text"
+                  name="cfirstName"
+                  label="First_Name"
+                  placeholder="First Name"
+                  required
+                  id="Manager_FirstName"
+                />
+                <p class="hide" id="danger">
+                  The name cannot be blank and caanot have number
+                </p>
+              </div>
+
+              <div class="field">
+                <input
+                  name="clastName"
+                  id="Manager_LastName"
+                  type="text"
+                  label="Last Name"
+                  placeholder="Last Name"
+                  required
+                />
+                <p class="hide" id="danger">
+                  The name cannot be blank and caanot have number
+                </p>
+              </div>
+
+              <div class="field">
+                <input
+                  type="text"
+                  name="companyName"
+                  id="CompanyName"
+                  label="Company Name"
+                  placeholder="Company Name"
+                  required
+                />
+                <p class="hide" id="danger">The name cannot be blank</p>
+              </div>
+
+              <div class="field">
+                <input
+                  name="ccontactNo"
+                  id="Company_Contact_Number"
+                  label="Company_Contact_Number"
+                  type="tel"
+                  placeholder="Contact Number"
+                  required
+                />
+                <p class="hide" id="danger">The Phone number is not valid</p>
+              </div>
+
+              <div class="field">
+                <input
+                  name="cemail"
+                  id="Company_EmailId"
+                  label="Company_EmailId"
+                  type="email"
+                  placeholder="Email Id"
+                />
+                <p class="hide" id="danger">The Email id is not valid</p>
+              </div>
+
+              <div class="field">
+                <input
+                  name="cgst"
+                  id="GST"
+                  label="GST"
+                  type="text"
+                  placeholder="Gst Number"
+                  required
+                />
+                <p class="hide" id="danger">Not a valid GST</p>
+              </div>
+
+              <div class="field">
+                <input
+                  name="cpassword"
+                  id="CompanyPassword"
+                  type="password"
+                  label="Password"
+                  placeholder="Password"
+                  required
+                />
+                <p class="hide" id="danger">
+                  Password should have 1 uppercase,1 lowercase,1 number and 1
+                  symbol
+                </p>
+              </div>
+
+              <div class="field">
+                <input
+                  name="Company_Confirm_Password"
+                  id="Company_Confirm_Password"
+                  type="password"
+                  placeholder="Confirm Password"
+                  required
+                />
+                <p class="hide" id="danger">Password doesnot match</p>
+              </div>
+
+              <div class="Ack">
+                <input type="checkbox" name="Ack" class="Ack" required />
+                <label for="Ack"
+                  >I agree to the<a href="TANDC.html" target="blank">
+                    terms and condition</a
+                  >
+                </label>
+              </div>
+
+              <div class="field btn">
+                <div class="btn-layer"></div>
+                <input type="submit" id="" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('footer'); -%>
+  </body>
+</html>

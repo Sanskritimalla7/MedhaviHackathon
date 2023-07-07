@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farm business</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/css/tailwind.output.css" />
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+  <script src="./assets/js/init-alpine.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script>
+  <script src="./assets/js/charts-lines.js" defer></script>
+  <script src="./assets/js/charts-pie.js" defer></script>
+  <link rel="stylesheet" href="css/header_footer.css">
+</head>
+
+<body>
+  <%- include('header'); -%>
+    <div class="flex h-screen bg-gray-50 bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
+      <!-- Desktop sidebar -->
+      <aside class="z-20 hidden w-64 overflow-y-auto bg-blue-100 dark:bg-gray-800 md:block flex-shrink-0">
+        <div class="py-4 text-gray-500 dark:text-gray-400">
+          <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="#">
+            <%= companyName %>
+          </a>
+          <ul class="mt-6">
+            <li class="relative px-6 py-3">
+              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                aria-hidden="true"></span>
+              <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                href="index.html">
+                <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                  <path
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                  </path>
+                </svg>
+                <span class="ml-4">Dashboard</span>
+              </a>
+              <div class="flex justify-center">
+                <div>
+                  <h3 class="mt-2 ">Search by</h3>
+                  <form action="/getfarmers" method="POST">
+                    <div class="mt-2 form-check">
+                      <input type="radio" name="crop" value="Wheat" id="wheat">
+                      <label for="wheat">Wheat &nbsp;</label>
+                    </div>
+                    <div class="mt-2 form-check">
+                      <input type="radio" name="crop" value="Rice" id="rice">
+                      <label for="rice">Rice &nbsp;</label>
+                    </div>
+                    <div class="mt-2 form-check">
+                      <input type="radio" name="crop" value="Barley" id="barley">
+                      <label for="barley">Potato &nbsp;</label>
+                    </div>
+                    <div class="mt-2 form-check">
+                      <input type="radio" name="crop" value="Barley" id="oats">
+                      <label for="oats">Oats &nbsp;</label>
+                    </div>
+                    <div class="mt-2 form-check">
+                      <input type="radio" name="crop" value="Pulse" id="pulse">
+                      <label for="pulse">Pulses &nbsp; </label>
+                    </div>
+                    <div class="mt-2 form-check">
+            <li class="nav-item">
+              <input type="radio" name="crop" value="Maize" id="maize">
+              <label for="maize">Maize &nbsp;</label>
+            </li>
+        </div>
+        <div class="mt-2 form-check">
+          <li class="nav-item">
+            <input type="radio" name="crop" value="Sugarcane" id="sugarcane">
+            <label for="sugarcane">Sugarcane </label>
+          </li>
+          <div class="mt-2 form-check">
+            <li class="nav-item">
+              <input type="radio" name="crop" value="" id="any_crop">
+              <label for="any_crop">Any </label>
+            </li>
+            <input
+              class="mt-4 appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+              name="reqLand" type="text" placeholder="enter area" aria-label="Full name">
+            <div class="flex justify-end">
+              <button
+                class="mt-4 flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
+                type="submit">
+                Search
+              </button>
+            </div>
+
+          </div>
+          </form>
+
+
+          </li>
+
+        </div>
+      </aside>
+      <!-- Mobile sidebar -->
+      <!-- Backdrop -->
+      <div x-show="isSideMenuOpen" x-transition:enter="transition ease-in-out duration-150"
+        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in-out duration-150" x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 z-10 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"></div>
+      <aside class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden"
+        x-show="isSideMenuOpen" x-transition:enter="transition ease-in-out duration-150"
+        x-transition:enter-start="opacity-0 transform -translate-x-20" x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in-out duration-150" x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0 transform -translate-x-20" @click.away="closeSideMenu"
+        @keydown.escape="closeSideMenu">
+        <div class="py-4 text-gray-500 dark:text-gray-400">
+          <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="#">
+            Farm Business
+          </a>
+          <ul class="mt-6">
+            <li class="relative px-6 py-3">
+              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                aria-hidden="true"></span>
+              <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                href="index.html">
+                <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                  <path
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                  </path>
+                </svg>
+                <span class="ml-4">Dashboard</span>
+              </a>
+            </li>
+          </ul>
+
+        </div>
+      </aside>
+      <div class="flex flex-col flex-1 w-full">
+        <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
+          <div
+            class="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
+            <!-- Mobile hamburger -->
+            <button class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
+              @click="toggleSideMenu" aria-label="Menu">
+              <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </button>
+            <!-- Search input -->
+            <div class="flex justify-center flex-1 lg:mr-32">
+              <div class="relative w-full max-w-xl mr-6 focus-within:text-purple-500">
+                <div class="absolute inset-y-0 flex items-center pl-2">
+                  <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <input
+                  class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
+                  type="text" placeholder="Search for Farmers" aria-label="Search" />
+              </div>
+            </div>
+            <ul class="flex items-center flex-shrink-0 space-x-6">
+              <!-- Theme toggler -->
+              <li class="flex">
+                <button class="rounded-md focus:outline-none focus:shadow-outline-purple" @click="toggleTheme"
+                  aria-label="Toggle color mode">
+                  <template x-if="!dark">
+                  </template>
+                  <template x-if="dark">
+                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd"
+                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </template>
+                </button>
+              </li>
+              <!-- Notifications menu -->
+              <li class="relative">
+                <button class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-purple"
+                  @click="toggleNotificationsMenu" @keydown.escape="closeNotificationsMenu" aria-label="Notifications"
+                  aria-haspopup="true">
+                  <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z">
+                    </path>
+                  </svg>
+                  <!-- Notification badge -->
+                  <span aria-hidden="true"
+                    class="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full dark:border-gray-800"></span>
+                </button>
+                <template x-if="isNotificationsMenuOpen">
+                  <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0" @click.away="closeNotificationsMenu"
+                    @keydown.escape="closeNotificationsMenu"
+                    class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700">
+                    <li class="flex">
+                      <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                        href="#">
+                        <span>Messages</span>
+                        <span
+                          class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-600 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-600">
+                          13
+                        </span>
+                      </a>
+                    </li>
+                    <li class="flex">
+                      <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                        href="#">
+                        <span>Sales</span>
+                        <span
+                          class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-600 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-600">
+                          2
+                        </span>
+                      </a>
+                    </li>
+                    <li class="flex">
+                      <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                        href="#">
+                        <span>Orders</span>
+                      </a>
+                    </li>
+                  </ul>
+                </template>
+              </li>
+              <!-- Profile menu -->
+              <li class="relative">
+                <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
+                  @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account"
+                  aria-haspopup="true">
+                  <img class="object-cover w-8 h-8 rounded-full"
+                    src="data:image/jpeg;base64,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"
+                    alt="" aria-hidden="true" />
+                </button>
+                <template x-if="isProfileMenuOpen">
+                  <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0" @click.away="closeProfileMenu" @keydown.escape="closeProfileMenu"
+                    class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700"
+                    aria-label="submenu">
+                    <li class="flex">
+                      <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                        href="#">
+                        <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none" stroke-linecap="round"
+                          stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                          <path
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                          </path>
+                          <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <span>Settings</span>
+                      </a>
+                    </li>
+                    <li class="flex">
+                      <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                        href="#">
+                        <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none" stroke-linecap="round"
+                          stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                          <path
+                            d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1">
+                          </path>
+                        </svg>
+                        <span>Log out</span>
+                      </a>
+                    </li>
+                  </ul>
+                </template>
+              </li>
+            </ul>
+          </div>
+        </header>
+        <main class="h-full overflow-y-auto">
+          <div class="container px-6 mx-auto grid">
+            <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+              Dashboard
+            </h2>
+            <!-- CTA -->
+
+            <!-- Cards -->
+            <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+              <!-- Card -->
+              <div class="flex items-center p-4 bg-teal-100" style="width: 120%;">
+                <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="mb-3 text-sm font-medium text-gray-600 dark:text-gray-400">
+                    GSTIN:- <%= gst %>
+                  </p>
+                  <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                    Prop:- <%= firstName %>
+                      <%= lastName %>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Card -->
+            <div class="flex items-center p-4 bg-green-100 rounded-lg shadow-xs dark:bg-gray-800">
+              <div class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
+                  </path>
+                </svg>
+              </div>
+              <div>
+                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                  Total clients
+                </p>
+                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                  639
+                </p>
+              </div>
+            </div>
+            <!-- Card -->
+            <div class="flex items-center p-4 bg-green-100 shadow-xs dark:bg-gray-800">
+              <div class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                  Expenditure
+                </p>
+                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                  Rs 46,76,089
+                </p>
+              </div>
+            </div>
+            <!-- Card -->
+            <div class="flex items-center p-4 bg-green-100 rounded-lg shadow-xs dark:bg-gray-800">
+              <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z">
+                  </path>
+                </svg>
+              </div>
+              <div>
+                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                  New sales
+                </p>
+                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                  376
+                </p>
+              </div>
+            </div>
+
+
+            <h1 style="text-align: center; color: green; font-size: 2rem; font-weight: 700;"><%= message %></h1>
+            <% if(hasQuery){ %>
+              <% if(farmers.length===0){ %>
+                <h1 style="text-align: center; margin-top: 3rem; font-size: 2rem; font-weight: 700;">No Result Found</h1>
+              <% }else { %>
+              <div
+                style="background-color: #ffe5d6; display: flex; flex-wrap: wrap; justify-content: space-evenly; gap: 2rem; margin-top: 4rem; padding: 3rem; border-radius: 15px;">
+                <% for(let i = 0; i<farmers.length; i++){ %>
+                <form action="/sendorder" method="POST">
+                  <div style="width: 23rem; box-shadow: 0.3rem 0.7rem 1rem rgba(0, 0, 0, 0.185); color: #c44b00; ;">
+                  <div class="block rounded-lg shadow-lg bg-white max-w-sm text-center"
+                    style="background-color: #e4fcd0; border-radius: 10px;">
+                   
+                    <div class="py-3 px-6 border-b border-gray-300" style="font-weight: 700; font-size: 1.5rem;">
+                      <%= farmers[i].firstName %> <%= farmers[i].lastName %>
+                    </div>
+                    <div class="p-6" style="margin-top: 0rem">
+                      <h5 class="text-gray-900 text-xl font-medium mb-2">Area : <%= farmers[i].land %> (acr)</h5>
+                      <p class="text-gray-700 text-base mb-4">
+                        Crops: 
+                        <% for(let j =0; j<farmers[i].crops.length; j++){ %>
+                          <%= farmers[i].crops[j] %>,
+                        <% } %>
+                      </p>
+                      <p class="text-gray-700 text-base mb-4">
+                        Phone: <%= farmers[i].contactNo %>
+                      </p>
+                      <div  class="py-3 px-3 border-b border-gray-300" style="font-weight: 200; font-size: 1rem;">
+                        Id:- <%= farmers[i]._id %>
+                      </div>
+                      <input style="margin-top: 1rem;"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        name="input_area"
+                        id="username" type="text" placeholder="Required Area">
+                      <input style="margin-top: 1rem;"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        name="input_crop"
+                        id="username" type="text" placeholder="Name of Crops">
+                      <input style="margin-top: 1rem;"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        name="input_amount"
+                        id="username" type="number" placeholder="Amount">
+                      <button type="submit" name="fid" value="<%= farmers[i]._id %>" style="padding: 0.7rem 1.5rem; margin-top: 1rem; background-color: #c44b00;"
+                        class=" inline-block px-6 py-2.5  text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Request</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+                <% } %>
+          </div>
+              <% } %>
+              <% } %>
+          </div>
+        </main>
+      </div>
+
+    </div>
+    <%- include('footer'); -%>
+</body>
+
+</html>
