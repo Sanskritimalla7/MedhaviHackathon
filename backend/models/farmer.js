@@ -34,13 +34,6 @@ const farmerSchema = new mongoose.Schema({
     unique: true,
     validate: [validator.isEmail, "Invalid email"],
   },
-  aadhar: {
-    type: String,
-    required: true,
-    unique: true,
-    min: 12,
-    max: 12,
-  },
   land: {
     type: Number,
   },

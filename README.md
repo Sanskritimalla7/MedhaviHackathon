@@ -42,6 +42,6 @@ Run this followed commands:
 ```bash
 # Install dependencies (only the first time)
 npm i
-# Run the local server at localhost:8080
+# Run the local server at localhost:3000
 npm run start
 ```
