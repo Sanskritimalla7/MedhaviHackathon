@@ -3,7 +3,7 @@
 The repository is for the Hackathon for the team name CodeX
 
 <ul>
-  <li>Aayush Josi <strong>Team leader</strong></li>
+  <li>Aayush Joshi <strong>Team leader</strong></li>
   <li>Sanskriti Malla</li>
   <li>Sabina sunar</li>
   </ul>
