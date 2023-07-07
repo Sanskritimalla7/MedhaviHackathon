@@ -73,7 +73,7 @@ app.post("/logincompany", async (req, res) => {
     console.log(error.response.data.errMessage);
   }
 });
-app.post("/loginfarmer", async (req, res) => {
+app.post("/loginfarmer", async (res, req) => {
   const farmerdetails = {
     email: req.body.email,
     contactNo: req.body.contactNo,
