@@ -10,7 +10,7 @@ process.on("uncaughtException", (err) => {
 });
 
 if (process.env.NODE_ENV !== "PRODUCTION")
-  require("dotenv").config({ path: "/config/.env" });
+  require("dotenv").config({ path: "MedhaviHackathon/backend/config/config.env" });
 
 connectDatabase();
 
