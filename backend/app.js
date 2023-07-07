@@ -13,7 +13,6 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views/")); // suggested
 app.use(express.static("public"));
 
-
 if (process.env.NODE_ENV !== "PRODUCTION")
   require("dotenv").config({ path: "./config/.env" });
 
