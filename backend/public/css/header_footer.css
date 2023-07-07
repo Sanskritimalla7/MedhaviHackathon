@@ -1,165 +1,163 @@
-
 .nav__container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.7rem 2rem;
-    background-color: #252525;
-  }
-  @media screen and (max-width: 40em) {
-    .nav__container {
-      justify-content: center;
-    }
-  }
-  
-  .nav__links {
-    width: 50vh;
-    font-size: 1.3rem;
-    color: #d8dddb;
-    display: flex;
-    justify-content: space-evenly;
-  }
-  .Anchor_style{
-    text-decoration: none;
-     color: white;
-     outline: none;
-  }
-  .Anchor_style:hover{
-    color: grey;
-  }
-  
-  .company {
-    display: flex;
-  }
-  .company__name {
-    color: aliceblue;
-    font-size: 2.2rem;
-    font-weight: 700;
-  }
-  .company__logo {
-    width: 3.4rem;
-  }
-
-  
-  .footer {
-    padding: 4rem 3rem 1rem 4rem;
-    background-color: rgb(44, 44, 44);
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 2rem;
+  background-color: #252525;
+}
+@media screen and (max-width: 40em) {
+  .nav__container {
     justify-content: center;
-    align-items: center;
-    gap: 2rem;
   }
+}
+
+.nav__links {
+  width: 50vh;
+  font-size: 1.3rem;
+  color: #d8dddb;
+  display: flex;
+  justify-content: space-evenly;
+}
+.Anchor_style {
+  text-decoration: none;
+  color: white;
+  outline: none;
+}
+.Anchor_style:hover {
+  color: grey;
+}
+
+.company {
+  display: flex;
+}
+.company__name {
+  color: aliceblue;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+.company__logo {
+  width: 3.4rem;
+}
+
+.footer {
+  padding: 4rem 3rem 1rem 4rem;
+  background-color: rgb(44, 44, 44);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.footer .footer__container {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+}
+@media screen and (max-width: 37.5em) {
   .footer .footer__container {
-    display: flex;
-    gap: 2rem;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 1rem;
   }
-  @media screen and (max-width: 37.5em) {
-    .footer .footer__container {
-      flex-wrap: wrap;
-      padding: 1rem;
-    }
-  }
-  .footer .footer__container .header__brand__name__footer {
-    font-size: 3rem;
-    font-weight: 600;
-    line-height: 0.8;
-    color: white;
-  }
-  .footer .footer__container .header__brand__name__footer--title {
-    color: #b28451;
-  }
+}
+.footer .footer__container .header__brand__name__footer {
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 0.8;
+  color: white;
+}
+.footer .footer__container .header__brand__name__footer--title {
+  color: #b28451;
+}
+.footer .footer__container__about {
+  width: 50%;
+  margin-left: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+@media screen and (max-width: 37.5em) {
   .footer .footer__container__about {
-    width: 50%;
-    margin-left: 3rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-left: 1rem;
   }
-  @media screen and (max-width: 37.5em) {
-    .footer .footer__container__about {
-      flex-wrap: wrap;
-      width: 100%;
-      margin-left: 1rem;
-    }
-  }
-  .footer .footer__container__about--text {
-    color: white;
-    font-size: 1.3rem;
-  }
+}
+.footer .footer__container__about--text {
+  color: white;
+  font-size: 1.3rem;
+}
+.footer .footer__container__contact {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  color: white;
+  font-size: 1.2rem;
+}
+@media screen and (max-width: 37.5em) {
   .footer .footer__container__contact {
-    width: 35%;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    color: white;
-    font-size: 1.2rem;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 1rem;
   }
-  @media screen and (max-width: 37.5em) {
-    .footer .footer__container__contact {
-      flex-wrap: wrap;
-      width: 100%;
-      padding: 1rem;
-    }
-  }
-  .footer .footer__container__contact__heading {
-    font-size: 2rem;
-  }
-  .footer .footer__container__contact__link,
-  .footer .footer__container__contact__link:active,
-  .footer .footer__container__contact__link:visited {
-    text-decoration: none;
-    color: inherit;
-  }
-  .footer .social_media {
-    display: flex;
-    gap: 2rem;
-  }
-  .footer .icon {
-    transition: all 0.2s;
-    height: 3rem;
-    fill: white;
-  }
-  .footer .icon:hover {
-    transform: translateY(-0.15rem);
-    transform: scale(1.2);
-  }
-  .footer .icon-facebook:hover {
-    fill: #0066ff;
-  }
-  .footer .icon-whatsapp:hover {
-    fill: #02af11;
-  }
-  .footer .icon-insta:hover {
-    fill: #f54b67;
-  }
-  .footer .icon-mail:hover {
-    fill: #cf0a0a;
-  }
-  .footer .icon-twitter:hover {
-    fill: #1e7fee;
-  }
-  .footer .icon-youtube:hover {
-    fill: red;
-  }
-  
-  .hr__line {
-    background-color: #776565;
-    height: 1px;
-    width: 83vw;
-  }
-  
+}
+.footer .footer__container__contact__heading {
+  font-size: 2rem;
+}
+.footer .footer__container__contact__link,
+.footer .footer__container__contact__link:active,
+.footer .footer__container__contact__link:visited {
+  text-decoration: none;
+  color: inherit;
+}
+.footer .social_media {
+  display: flex;
+  gap: 2rem;
+}
+.footer .icon {
+  transition: all 0.2s;
+  height: 3rem;
+  fill: white;
+}
+.footer .icon:hover {
+  transform: translateY(-0.15rem);
+  transform: scale(1.2);
+}
+.footer .icon-facebook:hover {
+  fill: #0066ff;
+}
+.footer .icon-whatsapp:hover {
+  fill: #02af11;
+}
+.footer .icon-insta:hover {
+  fill: #f54b67;
+}
+.footer .icon-mail:hover {
+  fill: #cf0a0a;
+}
+.footer .icon-twitter:hover {
+  fill: #1e7fee;
+}
+.footer .icon-youtube:hover {
+  fill: red;
+}
+
+.hr__line {
+  background-color: #776565;
+  height: 1px;
+  width: 83vw;
+}
+
+.copyright {
+  margin-top: 0rem;
+  font-size: 1.5rem;
+  color: white;
+  font-family: "lato";
+  font-style: italic;
+}
+@media screen and (max-width: 37.5em) {
   .copyright {
-    margin-top: 0rem;
-    font-size: 1.5rem;
-    color: white;
-    font-family: "lato";
-    font-style: italic;
+    width: 110%;
   }
-  @media screen and (max-width: 37.5em) {
-    .copyright {
-      width: 110%;
-    }
-  }
+}

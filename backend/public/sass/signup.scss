@@ -29,11 +29,8 @@
 }
 .formgroup {
   display: flex;
-  // height: 100%;
-  //   width: 60vw;
   justify-content: center;
   align-items: center;
-  // background: -webkit-linear-gradient(left, #a16521, #795915);
   background-image: url("https://source.unsplash.com/random/900×700/?farming");
   background-repeat: no-repeat;
   background-position: center;
@@ -47,7 +44,6 @@
 .wrapper {
   overflow: hidden;
   width: 60vw;
-  // max-width: 390px;
   background: rgb(247, 245, 243);
   margin: auto;
   opacity: 0.9;
@@ -156,7 +152,6 @@
     transition: all 0.3s ease;
     &:focus {
       border-color: #83fcb1;
-      /* box-shadow: inset 0 0 3px #fb6aae; */
     }
     ::placeholder {
       color: #999;
@@ -212,7 +207,8 @@ form .btn .btn-layer {
 form .btn:hover .btn-layer {
   left: 0;
 }
-form .btn input[type="submit"],button[type="submit"] {
+form .btn input[type="submit"],
+button[type="submit"] {
   height: 100%;
   width: 100%;
   z-index: 1;
@@ -255,7 +251,7 @@ input[type="radio"] {
 .Ack {
   text-decoration: underline;
   padding-left: 7px;
-  margin-top:27px;
+  margin-top: 27px;
 }
 
 .hide {
