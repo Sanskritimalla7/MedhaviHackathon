@@ -200,14 +200,14 @@ const CompanyPassword = document.getElementById("CompanyPassword");
 const CompanyConfirmPassword = document.getElementById(
   "Company_Confirm_Password"
 );
-const GST = document.getElementById("GST");
+const PAN = document.getElementById("PAN");
 
 let validMFirstName = false;
 let validMLastName = false;
 let validCompanyName = false;
 let validCompanyContactNumber = false;
 let validCompanyEmail = false;
-let validCompanyGST = false;
+let validCompanyPAN = false;
 let validCompanyPassword = false;
 
 ManagerFirstName.addEventListener("blur", function () {
@@ -268,16 +268,16 @@ CompanyContactNumber.addEventListener("blur", function () {
   }
 });
 
-GST.addEventListener("blur", function () {
+PAN.addEventListener("blur", function () {
   let regex = /\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}/;
   let str = this.value;
 
   if (regex.test(str)) {
-    validCompanyGST = true;
+    validCompanyPAN = true;
     this.nextElementSibling.classList.add("hide");
     this.nextElementSibling.classList.remove("show");
   } else {
-    validCompanyGST = false;
+    validCompanyPAN = false;
     this.nextElementSibling.classList.remove("hide");
     this.nextElementSibling.classList.add("show");
   }

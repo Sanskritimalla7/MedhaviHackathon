@@ -10,7 +10,7 @@ exports.registerCompany = catchAsyncError(async (req, res, next) => {
     contactNo,
     companyName,
     email,
-    gst,
+    pan,
     password,
     orders,
   } = req.body;
@@ -21,7 +21,7 @@ exports.registerCompany = catchAsyncError(async (req, res, next) => {
     contactNo,
     companyName,
     email,
-    gst,
+    pan,
     password,
     orders,
   });
