@@ -3,7 +3,7 @@ const Lname = document.getElementById("Lname");
 const Dob = document.getElementById("Dob");
 const Phone = document.getElementById("Phone");
 const Email = document.getElementById("Email");
-const Aadhar = document.getElementById("Aadhar");
+// const Aadhar = document.getElementById("Aadhar");
 const Acre = document.getElementById("Acres");
 const Password = document.getElementById("Password");
 const confirmPassword = document.getElementById("confirmPassword");
@@ -14,7 +14,7 @@ let validLname = false;
 let validDob = false;
 let validPhone = false;
 let validEmail = false;
-let validAadhar = false;
+// let validAadhar = false;
 let validAcre = false;
 let validPassword = false;
 
@@ -99,23 +99,23 @@ Email.addEventListener("blur", () => {
   }
 });
 
-Aadhar.addEventListener("blur", () => {
-  console.log("name is blurred");
-  let regex = /^([0-9]){12}$/;
-  let str = Aadhar.value;
+// Aadhar.addEventListener("blur", () => {
+//   console.log("name is blurred");
+//   let regex = /^([0-9]){12}$/;
+//   let str = Aadhar.value;
 
-  if (regex.test(str)) {
-    validAadhar = true;
-    console.log("Your name is valid");
-    Aadhar.nextElementSibling.classList.add("hide");
-    Aadhar.nextElementSibling.classList.remove("show");
-  } else {
-    validAadhar = false;
-    console.log("Your name is not valid");
-    Aadhar.nextElementSibling.classList.remove("hide");
-    Aadhar.nextElementSibling.classList.add("show");
-  }
-});
+//   if (regex.test(str)) {
+//     validAadhar = true;
+//     console.log("Your name is valid");
+//     Aadhar.nextElementSibling.classList.add("hide");
+//     Aadhar.nextElementSibling.classList.remove("show");
+//   } else {
+//     validAadhar = false;
+//     console.log("Your name is not valid");
+//     Aadhar.nextElementSibling.classList.remove("hide");
+//     Aadhar.nextElementSibling.classList.add("show");
+//   }
+// });
 
 Acre.addEventListener("blur", () => {
   let str = Acre.value;
@@ -177,7 +177,7 @@ FarmerSignUp.addEventListener("click", () => {
     validDob &&
     validPhone &&
     validEmail &&
-    validAadhar &&
+    // validAadhar &&
     validAcre &&
     validPassword
   ) {
