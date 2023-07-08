@@ -176,7 +176,7 @@ body {
 }
 
 .content {
-  width: 70%;
+  width: 100%;
   text-align: center;
 }
 
@@ -300,8 +300,8 @@ body {
   color: white;
   float: right;
   width: auto;
-  padding: 1rem 2rem;
-  border-radius: 4rem;
+  padding: 1rem 3rem;
+  border-radius: 5rem;
   background: transparent;
   display: flex;
   justify-content: center;
@@ -312,6 +312,10 @@ body {
   font-weight: 600;
   text-align: center;
   border: 1px solid var(--white);
+  -webkit-border-radius: 5rem;
+  -moz-border-radius: 5rem;
+  -ms-border-radius: 5rem;
+  -o-border-radius: 5rem;
 }
 
 @media screen and (max-width: 62.5em) {
@@ -447,7 +451,7 @@ body {
   width: 120px;
   padding: 15px;
   font-family: "Raleway", sans-serif;
-  font-size: 15px;
+  font-size: 100px;
   text-align: center;
   font-weight: normal;
   text-transform: uppercase;
