@@ -28,6 +28,11 @@
   color: grey;
 }
 
+.nav__link_weather {
+  text-decoration: none;
+  color: white;
+}
+
 .company {
   display: flex;
 }
